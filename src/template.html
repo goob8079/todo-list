@@ -16,14 +16,28 @@
             </div>
             <div class="projects">
                 <div class="projects-top">
-                    <p id="projects-title">Projects</p>
+                    <p id="projects-header">Projects</p>
                     <button id="add-project">+</button>
                 </div>
                 <div class="projects-content">
-
+                    <div id="default-project-div">
+                        <p id="default-project">Default</p>
+                    </div>
                 </div>
             </div>
         </div>
+        <dialog class="project-modal">
+            <form method="dialog" id="project-form">
+                <div class="project-form-row">
+                    <label for="project-title">Project Title</label>
+                    <input type="text" name="project-title" id="project-title">
+                </div>
+                <div class="project-btns">
+                    <button type="submit" id="project-submit">Submit</button>
+                    <button type="button" id="project-cancel">Cancel</button>
+                </div>
+            </form>
+        </dialog>
         <dialog class="task-modal">
             <form method="dialog" id="task-form">
                 <div class="task-form-row">
@@ -36,7 +50,7 @@
                 </div>
                 <div class="task-form-row">
                     <label for="task-due-date">Due Date</label>
-                    <input type="text" name="task-due-date" id="task-due-date">
+                    <input type="date" name="task-due-date" id="task-due-date">
                 </div>
                 <div class="task-form-row">
                     <label for="task-priority">Priority</label>
@@ -46,7 +60,7 @@
                         <option>High</option>
                     </select>
                 </div>
-                <div class="task-submit-btn">
+                <div class="task-btns">
                     <button type="submit" id="task-submit">Submit</button>
                     <button type="button" id="task-cancel">Cancel</button>
                 </div>

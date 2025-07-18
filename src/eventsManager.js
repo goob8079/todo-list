@@ -1,25 +1,42 @@
 import Project from "./projects.js";
+import { projectsHolder } from "./projectsHolder.js";
 
 let defaultProject = new Project("Default");
 
 const newTaskBtn = document.querySelector("#new-task");
 const taskModal = document.querySelector(".task-modal");
+const projectModal = document.querySelector(".project-modal");
 const projectContents = document.querySelector(".projects-content");
 const addProject = document.querySelector("#add-project");
+const defaultProjectItem = document.querySelector("#default-project");
 const content = document.querySelector(".content");
 
 const projectManager = (() => {
-    const defaultProject = document.createElement("div");
-    defaultProject.setAttribute("id", "default-project");
-    const defaultProjTitle = document.createElement("p");
-    defaultProjTitle.setAttribute("id", "default-proj-title");
-    defaultProjTitle.textContent = "Default";
+    const projectForm = document.querySelector("#project-form");
+    const projectCancelBtn = document.querySelector("#project-cancel");
 
-    defaultProjTitle.addEventListener("click", () => {
+    addProject.addEventListener("click", (e) => {
+        projectModal.showModal();
+
+        projectForm.addEventListener("submit", () => {
+            const projectTitle = document.querySelector("#project-title").value;
+            if (projectTitle) {
+                projectsHolder.addProject(projectTitle);
+                projectForm.reset();
+            }
+            projectModal.close();
+        });
+
+        projectCancelBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            projectForm.reset();
+            projectModal.close();
+        });
+    });
+
+    defaultProjectItem.addEventListener("click", () => {
         
     });
-    defaultProject.appendChild(defaultProjTitle);
-    projectContents.appendChild(defaultProject);
 });
 
 const taskModalManager = (() => {
@@ -34,13 +51,13 @@ const taskModalManager = (() => {
             const taskTitle = document.querySelector("#task-title").value;
             const taskDesc = document.querySelector("#task-desc").value;
             const taskDueDate = document.querySelector("#task-due-date").value;
-            const taskPriority = document.querySelector("#task-priority").value;
+            const taskPriority = document.querySelector("#priority-select").value;
             // make sure the title, due date, and priority are not empty
             if (taskTitle && taskDueDate && taskPriority) {
                 defaultProject.addTask(taskTitle, taskDesc, taskDueDate, taskPriority, false);
                 taskForm.reset();
             }
-            taskForm.close();
+            taskModal.close();
         });
 
         taskCancelBtn.addEventListener("click", (e) => {

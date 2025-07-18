@@ -16,23 +16,23 @@ export default class Project {
         return this.tasks;
     }
 
-    #getTaskByID(id) {
-        const selectTask = this.tasks.find(task => task.id === id);
+    #getTaskByTitle(title) {
+        const selectTask = this.tasks.find(task => task.title === title);
         return selectTask;
     }
 
-    updateTasks(id, newInfo) {
-        const updateTask = this.#getTaskByID(id);
+    updateTasks(title, newInfo) {
+        const updateTask = this.#getTaskByTitle(title);
         // if task exists, then update it
-        if (task) {
+        if (updateTask) {
             updateTask.updateInfo(newInfo);
             return true;
         }
         return false;
     }
 
-    deleteTask(id) {
-        const taskIndex = this.tasks.findIndex(task => task.id === id);
+    deleteTask(taskTitle) {
+        const taskIndex = this.tasks.findIndex(task => task.title === title);
         if (taskIndex !== -1) {
             this.tasks.splice(taskIndex, 1);
             return true;

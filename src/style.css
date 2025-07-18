@@ -47,7 +47,7 @@ body {
     width: 100%;
     display: flex; justify-content: space-between; align-items: center;
     
-    #projects-title {
+    #projects-header {
         color: #ffff;
         font-size: 20px;
     }
@@ -66,10 +66,10 @@ body {
 .projects-content {
     height: 100%; width: 100%;
 
-    #default-proj-title {
+    #default-project {
         color: #ffff;
     }
-    #default-proj-title:hover {
+    #default-project:hover {
         cursor: pointer;
     }
 }
