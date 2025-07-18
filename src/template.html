@@ -3,10 +3,13 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Tasks</title>
     </head>
     <body>
         <div class="sidebar">
+            <div class="title">
+                <h1>TASKS</h1>
+            </div>
             <div class="buttons">
                 <button id="home">Home</button>
                 <button id="new-task">Create New Task</button>            
@@ -14,13 +17,41 @@
             <div class="projects">
                 <div class="projects-top">
                     <p id="projects-title">Projects</p>
-                    <button id="add-projects">+</button>
+                    <button id="add-project">+</button>
                 </div>
                 <div class="projects-content">
 
                 </div>
             </div>
         </div>
+        <dialog class="task-modal">
+            <form method="dialog" id="task-form">
+                <div class="task-form-row">
+                    <label for="task-title">Title</label>
+                    <input type="text" name="task-title" id="task-title" maxlength="40">
+                </div>
+                <div class="task-form-row">
+                    <label for="task-desc">Description</label>
+                    <input type="text" name="task-desc" id="task-desc">
+                </div>
+                <div class="task-form-row">
+                    <label for="task-due-date">Due Date</label>
+                    <input type="text" name="task-due-date" id="task-due-date">
+                </div>
+                <div class="task-form-row">
+                    <label for="task-priority">Priority</label>
+                    <select id="priority-select">
+                        <option value="default">Low</option>
+                        <option>Medium</option>
+                        <option>High</option>
+                    </select>
+                </div>
+                <div class="task-submit-btn">
+                    <button type="submit" id="task-submit">Submit</button>
+                    <button type="button" id="task-cancel">Cancel</button>
+                </div>
+            </form>
+        </dialog>
         <div class="content">
 
         </div>

@@ -1,4 +1,4 @@
-import { Task } from "./task.js";
+import Task from "./task.js";
 
 export default class Project {
     constructor(projectTitle) {
@@ -7,8 +7,8 @@ export default class Project {
         this.tasks = [];
     }
 
-    addTask(title, desc, dueDate, priority, notes, isComplete = false) {
-        const newTask = new Task(title, desc, dueDate, priority, notes, isComplete, crypto.randomUUID);
+    addTask(title, desc, dueDate, priority, isComplete = false) {
+        const newTask = new Task(title, desc, dueDate, priority, isComplete, crypto.randomUUID);
         this.tasks.push(newTask);
     }
 

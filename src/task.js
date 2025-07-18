@@ -1,10 +1,9 @@
 export default class Task {
-    constructor(title, desc, dueDate, priority, notes, isComplete, id) {
+    constructor(title, desc, dueDate, priority, isComplete, id) {
         this.title = title;
         this.desc = desc;
         this.dueDate = dueDate;
         this.priority = priority;
-        this.notes = notes;
         this.isComplete = isComplete || false;
         this.id = crypto.randomUUID();
     }
