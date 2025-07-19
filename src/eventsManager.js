@@ -1,7 +1,9 @@
-import Project from "./projects.js";
+import Project from "./project.js";
 import { projectsHolder } from "./projectsHolder.js";
+import { display } from "./display.js";
 
 let defaultProject = new Project("Default");
+let currentProject = defaultProject;
 
 const newTaskBtn = document.querySelector("#new-task");
 const taskModal = document.querySelector(".task-modal");
@@ -54,8 +56,9 @@ const taskModalManager = (() => {
             const taskPriority = document.querySelector("#priority-select").value;
             // make sure the title, due date, and priority are not empty
             if (taskTitle && taskDueDate && taskPriority) {
-                defaultProject.addTask(taskTitle, taskDesc, taskDueDate, taskPriority, false);
+                currentProject.addTask(taskTitle, taskDesc, taskDueDate, taskPriority, false);
                 taskForm.reset();
+                // display(currentProject);
             }
             taskModal.close();
         });
@@ -68,4 +71,6 @@ const taskModalManager = (() => {
     });
 });
 
-export { projectManager, taskModalManager, };
+const getCurrentProject = (() => currentProject);
+
+export { projectManager, taskModalManager, getCurrentProject, };

@@ -30,7 +30,7 @@
             <form method="dialog" id="project-form">
                 <div class="project-form-row">
                     <label for="project-title">Project Title</label>
-                    <input type="text" name="project-title" id="project-title">
+                    <input type="text" name="project-title" id="project-title" required>
                 </div>
                 <div class="project-btns">
                     <button type="submit" id="project-submit">Submit</button>
@@ -42,7 +42,7 @@
             <form method="dialog" id="task-form">
                 <div class="task-form-row">
                     <label for="task-title">Title</label>
-                    <input type="text" name="task-title" id="task-title" maxlength="40">
+                    <input type="text" name="task-title" id="task-title" maxlength="40" required>
                 </div>
                 <div class="task-form-row">
                     <label for="task-desc">Description</label>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="task-form-row">
                     <label for="task-due-date">Due Date</label>
-                    <input type="date" name="task-due-date" id="task-due-date">
+                    <input type="date" name="task-due-date" id="task-due-date" required>
                 </div>
                 <div class="task-form-row">
                     <label for="task-priority">Priority</label>
