@@ -1,6 +1,6 @@
 import "./style.css";
 import { display } from "./display.js";
-import { taskModalManager } from "./eventsManager.js";
+import { taskManager } from "./eventsManager.js";
 import { projectManager } from "./eventsManager.js";
 
 const homeBtn = document.querySelector("#home");
@@ -11,4 +11,4 @@ const homeBtn = document.querySelector("#home");
 
 display();
 projectManager();
-taskModalManager();
+taskManager();

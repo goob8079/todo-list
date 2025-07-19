@@ -13,6 +13,7 @@ const addProject = document.querySelector("#add-project");
 const defaultProjectItem = document.querySelector("#default-project");
 const content = document.querySelector(".content");
 
+// both projectManager and taskManager are IIFEs
 const projectManager = (() => {
     const projectForm = document.querySelector("#project-form");
     const projectCancelBtn = document.querySelector("#project-cancel");
@@ -39,9 +40,9 @@ const projectManager = (() => {
     defaultProjectItem.addEventListener("click", () => {
         
     });
-});
+})();
 
-const taskModalManager = (() => {
+const taskManager = (() => {
     const taskForm = document.querySelector("#task-form");
     const taskCancelBtn = document.querySelector("#task-cancel");
     
@@ -58,7 +59,7 @@ const taskModalManager = (() => {
             if (taskTitle && taskDueDate && taskPriority) {
                 currentProject.addTask(taskTitle, taskDesc, taskDueDate, taskPriority, false);
                 taskForm.reset();
-                // display(currentProject);
+                display(currentProject);
             }
             taskModal.close();
         });
@@ -69,8 +70,8 @@ const taskModalManager = (() => {
             taskModal.close();
         });
     });
-});
+})();
 
-const getCurrentProject = (() => currentProject);
+const getCurrentProject = () => currentProject;
 
-export { projectManager, taskModalManager, getCurrentProject, };
+export { projectManager, taskManager, getCurrentProject, };
