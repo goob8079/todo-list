@@ -77,3 +77,37 @@ body {
 .content {
     grid-column: 2;
 }
+
+.tasks-container {
+    display: flex; justify-content: flex-start; align-items: center; gap: 16px;
+    margin: 20px;
+}
+
+#task-item {
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    border: 1px solid black;
+    width: 20%;
+    padding: 10px;
+
+    #task-exit {
+        align-self: flex-end;
+        padding: 0; margin: 0;
+    }
+    #task-exit:hover {
+        cursor: pointer;
+    }
+
+    #task-item-desc {
+        max-height: 3em;
+        overflow: hidden;
+        cursor: pointer;
+        text-overflow: ellipsis;
+    }
+    #task-item-desc.expanded {
+        max-height: 100vh;
+    }
+
+    #task-item-priority {
+        margin: 10px;
+    }
+}

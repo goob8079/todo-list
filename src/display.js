@@ -16,6 +16,10 @@ const display = (project) => {
     taskContainer.setAttribute("class", "tasks-container");
 
     project.getTasks().forEach((task) => {
+        const taskExit = document.createElement("p");
+        taskExit.setAttribute("id", "task-exit");
+        taskExit.textContent = "X";
+
         const taskItem = document.createElement("div");
         taskItem.setAttribute("id", "task-item");
 
@@ -25,38 +29,43 @@ const display = (project) => {
 
         const taskItemDueDate = document.createElement("p");
         taskItemDueDate.setAttribute("id", "task-item-due-date");
-        taskItemDueDate.textContent = `${task.dueDate}`;
+        taskItemDueDate.textContent = `Due date: ${task.dueDate}`;
 
         const taskItemDesc = document.createElement("p");
         taskItemDesc.setAttribute("id", "task-item-desc");
-        taskItemDesc.textContent = `${task.desc}`;
+        taskItemDesc.textContent = `Description: ${task.desc}`;
+        taskItemDesc.addEventListener("click", () => {
+            taskItemDesc.classList.toggle("expanded");
+        });
 
         const taskItemPriority = document.createElement("select");
+        taskItemPriority.setAttribute("id", "task-item-priority");
         const priorities = ["Low", "Medium", "High"];
         priorities.forEach((level) => {
             const option = document.createElement("option");
             option.value = level;
-            option.textContent = level;
+            option.textContent = `Priority: ${level}`;
             taskItemPriority.appendChild(option);
         });
         taskItemPriority.value = task.priority;
-        console.log(task);
         
-        const taskitemcomplete = document.createElement("select");
+        const taskItemComplete = document.createElement("select");
+        taskItemComplete.setAttribute("id", "task-item-complete");
         const completeOptions = ["true", "false"];
         completeOptions.forEach((choice) => {
             const option = document.createElement("option");
             option.value = choice;
-            option.textContent = choice;
-            taskitemcomplete.appendChild(option);
+            option.textContent = `Complete?: ${choice}`;
+            taskItemComplete.appendChild(option);
         });
-        taskitemcomplete.value = task.isComplete;
+        taskItemComplete.value = task.isComplete;
 
+        taskItem.appendChild(taskExit);
         taskItem.appendChild(taskItemTitle);
         taskItem.appendChild(taskItemDueDate);
         taskItem.appendChild(taskItemDesc);
         taskItem.appendChild(taskItemPriority);
-        taskItem.appendChild(taskitemcomplete);
+        taskItem.appendChild(taskItemComplete);
         taskContainer.appendChild(taskItem);
     });
 

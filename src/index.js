@@ -1,6 +1,6 @@
 import "./style.css";
 import { display } from "./display.js";
-import { taskManager } from "./eventsManager.js";
+import { getCurrentProject, taskManager } from "./eventsManager.js";
 import { projectManager } from "./eventsManager.js";
 
 const homeBtn = document.querySelector("#home");
@@ -9,6 +9,6 @@ const homeBtn = document.querySelector("#home");
 //     display();
 // });
 
-display();
+display(getCurrentProject());
 projectManager();
 taskManager();
