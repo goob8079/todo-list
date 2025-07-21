@@ -32,7 +32,7 @@ export default class Project {
     }
 
     deleteTask(taskTitle) {
-        const taskIndex = this.tasks.findIndex(task => task.title === title);
+        const taskIndex = this.tasks.findIndex(task => task.title === taskTitle);
         if (taskIndex !== -1) {
             this.tasks.splice(taskIndex, 1);
             return true;

@@ -19,6 +19,10 @@ const display = (project) => {
         const taskExit = document.createElement("p");
         taskExit.setAttribute("id", "task-exit");
         taskExit.textContent = "X";
+        taskExit.addEventListener("click", () => {
+            taskContainer.removeChild(taskItem);
+            project.deleteTask(task.title);
+        });
 
         const taskItem = document.createElement("div");
         taskItem.setAttribute("id", "task-item");
@@ -59,6 +63,15 @@ const display = (project) => {
             taskItemComplete.appendChild(option);
         });
         taskItemComplete.value = task.isComplete;
+        taskItem.style.borderTop = "5px solid red";
+
+        taskItemComplete.addEventListener("change", () => {
+            if (taskItemComplete.value === "false") {
+                taskItem.style.borderTop = "5px solid red";
+            } else if (taskItemComplete.value === "true") {
+                taskItem.style.borderTop = "5px solid green";
+            }
+        });
 
         taskItem.appendChild(taskExit);
         taskItem.appendChild(taskItemTitle);

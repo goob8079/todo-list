@@ -50,11 +50,11 @@ const taskManager = (() => {
         taskModal.showModal();
         
         taskForm.addEventListener("submit", (e) => {
-            e.preventDefault();
             const taskTitle = document.querySelector("#task-title").value;
             const taskDesc = document.querySelector("#task-desc").value;
             const taskDueDate = document.querySelector("#task-due-date").value;
             const taskPriority = document.querySelector("#priority-select").value;
+            e.preventDefault();
             // make sure the title, due date, and priority are not empty
             if (taskTitle && taskDueDate && taskPriority) {
                 currentProject.addTask(taskTitle, taskDesc, taskDueDate, taskPriority, false);
