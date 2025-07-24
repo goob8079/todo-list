@@ -71,6 +71,7 @@ body {
     }
     #default-project:hover {
         cursor: pointer;
+        color: #6567ff;
     }
 }
 

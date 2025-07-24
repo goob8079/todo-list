@@ -38,7 +38,7 @@ const projectManager = (() => {
     });
 
     defaultProjectItem.addEventListener("click", () => {
-        
+        display(currentProject);
     });
 })();
 

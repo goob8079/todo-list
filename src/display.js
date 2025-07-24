@@ -1,6 +1,7 @@
 import Project from "./project";
 
 const content = document.querySelector(".content");
+const projectContents = document.querySelector(".projects-contents");
 
 const display = (project) => {
     content.innerHTML = "";
@@ -86,4 +87,9 @@ const display = (project) => {
     content.append(projectContentDiv);
 };
 
-export { display };
+const projectsDisplay = () => {
+    projectContents.innerHTML = "";
+    
+};
+
+export { display, projectsDisplay };
