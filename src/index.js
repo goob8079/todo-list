@@ -1,14 +1,18 @@
 import "./style.css";
-import { display } from "./display.js";
+import { display, projectsDisplay } from "./display.js";
 import { getCurrentProject, taskManager } from "./eventsManager.js";
 import { projectManager } from "./eventsManager.js";
 
 const homeBtn = document.querySelector("#home");
 
+document.addEventListener("DOMContentLoaded", () => {
+    display(getCurrentProject());
+    projectsDisplay();
+});
+
 homeBtn.addEventListener("click", () => {
     display(getCurrentProject());
 });
 
-display(getCurrentProject());
 projectManager();
 taskManager();

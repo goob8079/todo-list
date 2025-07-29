@@ -75,6 +75,22 @@ body {
     }
 }
 
+.project-row {
+    display: flex; justify-content: space-between; align-items: center;
+    color: #ffff;
+
+    p:hover {
+        cursor: pointer;
+        color: #6567ff;
+    }
+
+    #remove-project:hover {
+        cursor: pointer;
+        color: #ff0000;
+        font-size: 30px;
+    }
+}
+
 .content {
     grid-column: 2;
 }
