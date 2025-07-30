@@ -1,3 +1,4 @@
+import { setCurrentProject } from "./eventsManager";
 import Project from "./project";
 import { projectsHolder } from "./projectsHolder";
 
@@ -9,7 +10,7 @@ const display = (project) => {
     projectContentDiv.setAttribute("class", "project-content-div");
     const projectContentTitle = document.createElement("h1");
     projectContentTitle.setAttribute("id", "project-content-title");
-    projectContentTitle.textContent = "Default";
+    projectContentTitle.textContent = project.projectTitle;
     projectContentDiv.appendChild(projectContentTitle);
     
     const taskContainer = document.createElement("div");
@@ -102,6 +103,7 @@ const projectsDisplay = () => {
         projectItem.classList.add("project-row");
 
         const projectName = document.createElement("p");
+        projectName.setAttribute("id", "project-name");
         projectName.textContent = project.projectTitle;
         
         const removeProject = document.createElement("div");
@@ -110,9 +112,9 @@ const projectsDisplay = () => {
         
         projectItem.appendChild(projectName);
         projectItem.appendChild(removeProject);
-        projectContents.appendChild(projectItem);
         
         projectName.addEventListener("click", () => {
+            setCurrentProject(project);
             display(project);
         });
         
@@ -120,7 +122,8 @@ const projectsDisplay = () => {
             projectsHolder.deleteProject(project.projectTitle);
             projectsDisplay();
         });
-        
+
+        projectContents.appendChild(projectItem);
     });
 };
 

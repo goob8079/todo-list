@@ -42,6 +42,7 @@ const projectManager = (() => {
     });
 
     defaultProjectItem.addEventListener("click", () => {
+        setCurrentProject(defaultProject);
         display(currentProject);
     });
 })();
@@ -78,4 +79,8 @@ const taskManager = (() => {
 
 const getCurrentProject = () => currentProject;
 
-export { projectManager, taskManager, getCurrentProject, };
+const setCurrentProject = (project) => {
+    currentProject = project;
+};
+
+export { projectManager, taskManager, getCurrentProject, setCurrentProject, };
