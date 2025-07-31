@@ -1,15 +1,17 @@
 import Task from "./task.js";
 
 export default class Project {
-    constructor(projectTitle) {
+    // saveToLocalStorage is optional
+    constructor(projectTitle, saveToLocalStorage = () => {}) {
         this.projectTitle = projectTitle;
-        this.id = crypto.randomUUID();
         this.tasks = [];
+        this.saveToLocalStorage = saveToLocalStorage;
     }
 
     addTask(title, desc, dueDate, priority, isComplete = false) {
-        const newTask = new Task(title, desc, dueDate, priority, isComplete, crypto.randomUUID);
+        const newTask = new Task(title, desc, dueDate, priority, isComplete);
         this.tasks.push(newTask);
+        this.saveToLocalStorage();
     }
 
     getTasks() {
@@ -26,6 +28,7 @@ export default class Project {
         // if task exists, then update it
         if (updateTask) {
             updateTask.updateInfo(newInfo);
+            this.saveToLocalStorage();
             return true;
         }
         return false;
@@ -35,6 +38,7 @@ export default class Project {
         const taskIndex = this.tasks.findIndex(task => task.title === taskTitle);
         if (taskIndex !== -1) {
             this.tasks.splice(taskIndex, 1);
+            this.saveToLocalStorage();
             return true;
         }
         return false;
