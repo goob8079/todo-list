@@ -1,6 +1,8 @@
 import Project from "./project";
 import Task from "./task";
 
+const DEFAULT_PROJECT_TITLE = "Default";
+
 const projectsHolder = (() => {
     let projectsList = [];
     
@@ -30,9 +32,7 @@ const projectsHolder = (() => {
         projectsList = newProjectsList;
     }
 
-    const getProjects = () => {
-        return projectsList;
-    }
+    const getProjects = () => projectsList;
 
     const addProject = (title) => {
         const newProject = new Project(title);
@@ -51,9 +51,22 @@ const projectsHolder = (() => {
         return false;
     }
 
+    // ensures that default project is always present
+    const defaultProjectPresent = () => {
+        // check if at least one project has the title "Default"
+        if (!projectsList.some(project => project.projectTitle === DEFAULT_PROJECT_TITLE)) {
+            const defaultProject = new Project(DEFAULT_PROJECT_TITLE, saveToLocalStorage);
+            // add defaultProject to the very start of projectsList
+            projectsList.unshift(defaultProject);
+            saveToLocalStorage();
+        }
+    }
+
+    // initialize these before everything else
     retrieveFromLocalStorage();
+    defaultProjectPresent();
 
     return { addProject, getProjects, deleteProject };
 })();
 
-export { projectsHolder };
+export { DEFAULT_PROJECT_TITLE, projectsHolder };

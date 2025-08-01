@@ -1,6 +1,5 @@
 import { setCurrentProject } from "./eventsManager";
-import Project from "./project";
-import { projectsHolder } from "./projectsHolder";
+import { DEFAULT_PROJECT_TITLE, projectsHolder } from "./projectsHolder";
 
 const display = (project) => {
     const content = document.querySelector(".content");
@@ -68,9 +67,11 @@ const display = (project) => {
         
         taskItemComplete.addEventListener("change", () => {
             if (taskItemComplete.value === "false") {
+                task.toggleComplete = false;
                 taskItem.style.borderTop = "5px solid red";
             } else if (taskItemComplete.value === "true") {
                 taskItem.style.borderTop = "5px solid green";
+                task.toggleComplete = true;
             }
         });
         
@@ -106,23 +107,26 @@ const projectsDisplay = () => {
         projectName.setAttribute("id", "project-name");
         projectName.textContent = project.projectTitle;
         
-        const removeProject = document.createElement("div");
-        removeProject.setAttribute("id", "remove-project");
-        removeProject.textContent = "X";
-        
         projectItem.appendChild(projectName);
-        projectItem.appendChild(removeProject);
         
         projectName.addEventListener("click", () => {
             setCurrentProject(project);
             display(project);
         });
         
-        removeProject.addEventListener("click", () => {
-            projectsHolder.deleteProject(project.projectTitle);
-            projectsDisplay();
-        });
-
+        if (project.projectTitle !== DEFAULT_PROJECT_TITLE) {
+            const removeProject = document.createElement("div");
+            removeProject.setAttribute("id", "remove-project");
+            removeProject.textContent = "X";
+            removeProject.addEventListener("click", () => {
+                localStorage.removeItem(project);
+                projectsHolder.deleteProject(project.projectTitle);
+                projectsDisplay();
+            });
+            
+            projectItem.appendChild(removeProject);
+        }
+        
         projectContents.appendChild(projectItem);
     });
 };

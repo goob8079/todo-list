@@ -1,27 +1,23 @@
 import Project from "./project.js";
-import { projectsHolder } from "./projectsHolder.js";
+import { DEFAULT_PROJECT_TITLE, projectsHolder } from "./projectsHolder.js";
 import { display, projectsDisplay } from "./display.js";
-
-let defaultProject = new Project("Default");
-let currentProject = defaultProject;
 
 const newTaskBtn = document.querySelector("#new-task");
 const taskModal = document.querySelector(".task-modal");
 const projectModal = document.querySelector(".project-modal");
-const projectContents = document.querySelector(".projects-content");
 const addProject = document.querySelector("#add-project");
-const defaultProjectItem = document.querySelector("#default-project");
-const content = document.querySelector(".content");
+
+let currentProject = DEFAULT_PROJECT_TITLE;
 
 // both projectManager and taskManager are IIFEs
 const projectManager = (() => {
     const projectForm = document.querySelector("#project-form");
     const projectCancelBtn = document.querySelector("#project-cancel");
-
+    
     addProject.addEventListener("click", (e) => {
         projectModal.showModal();
     });
-
+    
     projectForm.addEventListener("submit", (e) => {
         e.preventDefault();
         const projectTitle = document.querySelector("#project-title").value;
@@ -34,16 +30,11 @@ const projectManager = (() => {
         projectForm.reset();
         projectModal.close();
     });
-
+    
     projectCancelBtn.addEventListener("click", (e) => {
         e.preventDefault();
         projectForm.reset();
         projectModal.close();
-    });
-
-    defaultProjectItem.addEventListener("click", () => {
-        setCurrentProject(defaultProject);
-        display(currentProject);
     });
 })();
 
